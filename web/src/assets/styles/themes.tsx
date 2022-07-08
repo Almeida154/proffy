@@ -57,7 +57,7 @@ export const themes = {
     'color-secondary': '#04d361',
     'color-secondary-dark': '#04bf58',
     'color-title-in-primary': '#000000',
-    'color-text-in-primary': '#d4c2ff',
+    'color-text-in-primary': '#141414',
     'color-text-title': '#ffffff',
     'color-text-complement': '#9c98a6',
     'color-text-base': '#E2E2E2',

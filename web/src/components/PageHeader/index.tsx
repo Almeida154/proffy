@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 
 import logoIMG from '../../assets/images/logo.svg';
+import blackLogoIMG from '../../assets/images/logo.black.svg';
 import backIC from '../../assets/images/icons/back.svg';
+import blackBackIC from '../../assets/images/icons/back.black.svg';
 import sunIC from '../../assets/images/icons/sun.svg';
 import moonIC from '../../assets/images/icons/moon.svg';
 
@@ -21,7 +23,10 @@ const PageHeader: React.FC<IPageHeader> = ({ title, children }) => {
     <header className="page-header">
       <div className="top-bar-container">
         <Link to="/">
-          <img src={backIC} alt="Voltar" />
+          <img
+            src={theme === 'dark' ? blackBackIC : backIC}
+            alt="Voltar"
+          />
         </Link>
         <div>
           <div onClick={() => toggleTheme()}>
@@ -30,7 +35,10 @@ const PageHeader: React.FC<IPageHeader> = ({ title, children }) => {
               alt="Theme Icon"
             />
           </div>
-          <img src={logoIMG} alt="Proffy" />
+          <img
+            src={theme === 'dark' ? blackLogoIMG : logoIMG}
+            alt="Proffy"
+          />
         </div>
       </div>
 

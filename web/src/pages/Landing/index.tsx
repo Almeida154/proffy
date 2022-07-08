@@ -4,18 +4,28 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 import logoIMG from '../../assets/images/logo.svg';
+import blackLogoIMG from '../../assets/images/logo.black.svg';
 import landingIMG from '../../assets/images/landing.svg';
 
 import studyIC from '../../assets/images/icons/study.svg';
+import blackStudyIC from '../../assets/images/icons/study.black.svg';
 import giveClassesIC from '../../assets/images/icons/give-classes.svg';
+import blackGiveClassesIC from '../../assets/images/icons/give-classes.black.svg';
 import purpleHeartIC from '../../assets/images/icons/purple-heart.svg';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const Landing = () => {
+  const { theme } = useTheme();
+
   return (
     <div id="page-landing">
       <div className="container" id="page-landing-content">
         <div className="logo-container">
-          <img src={logoIMG} alt="Proffy" />
+          <img
+            src={theme === 'dark' ? blackLogoIMG : logoIMG}
+            alt="Proffy"
+          />
+
           <h2>Sua plataforma de estudos online</h2>
         </div>
 
@@ -27,11 +37,19 @@ const Landing = () => {
 
         <div className="buttons-container">
           <Link to="/study" className="study">
-            <img src={studyIC} alt="Estudar" />
+            <img
+              src={theme === 'dark' ? blackStudyIC : studyIC}
+              alt="Estudar"
+            />
             Estudar
           </Link>
           <Link to="/give-classes" className="give-classes">
-            <img src={giveClassesIC} alt="Dar aulas" />
+            <img
+              src={
+                theme === 'dark' ? blackGiveClassesIC : giveClassesIC
+              }
+              alt="Dar aulas"
+            />
             Dar aulas
           </Link>
         </div>
