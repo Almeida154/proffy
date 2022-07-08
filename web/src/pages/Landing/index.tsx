@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-import logoIMG from '../../images/logo.svg';
-import landingIMG from '../../images/landing.svg';
+import logoIMG from '../../assets/images/logo.svg';
+import landingIMG from '../../assets/images/landing.svg';
 
-import studyIC from '../../images/icons/study.svg';
-import giveClassesIC from '../../images/icons/give-classes.svg';
-import purpleHeartIC from '../../images/icons/purple-heart.svg';
+import studyIC from '../../assets/images/icons/study.svg';
+import giveClassesIC from '../../assets/images/icons/give-classes.svg';
+import purpleHeartIC from '../../assets/images/icons/purple-heart.svg';
 
 const Landing = () => {
   return (
@@ -25,14 +26,14 @@ const Landing = () => {
         />
 
         <div className="buttons-container">
-          <a href="#" className="study">
+          <Link to="/study" className="study">
             <img src={studyIC} alt="Estudar" />
             Estudar
-          </a>
-          <a href="#" className="give-classes">
+          </Link>
+          <Link to="/give-classes" className="give-classes">
             <img src={giveClassesIC} alt="Dar aulas" />
             Dar aulas
-          </a>
+          </Link>
         </div>
 
         <span className="total-connections">

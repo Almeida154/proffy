@@ -1,15 +1,10 @@
 import { useState } from 'react';
 
-import Landing from './assets/pages/Landing';
-
 import './assets/styles/global.css';
+import Router from './routes';
 
 function App() {
-  return (
-    <div>
-      <Landing />
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;
