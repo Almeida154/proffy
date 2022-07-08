@@ -1,10 +1,16 @@
 import { useState } from 'react';
 
+import { ThemeProvider } from './contexts/ThemeContext';
+import AppRoutes from './routes';
+
 import './assets/styles/global.css';
-import Router from './routes';
 
 function App() {
-  return <Router />;
+  return (
+    <ThemeProvider>
+      <AppRoutes />
+    </ThemeProvider>
+  );
 }
 
 export default App;

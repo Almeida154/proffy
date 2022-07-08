@@ -4,7 +4,7 @@ import Landing from './pages/Landing';
 import TeacherForm from './pages/TeacherForm';
 import TeacherList from './pages/TeacherList';
 
-const Router = () => {
+const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -16,4 +16,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default AppRoutes;
