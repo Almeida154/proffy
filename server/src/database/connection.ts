@@ -1,6 +1,6 @@
 import Knex from 'knex';
 
-const ip = '192.168.0.10';
+const ip = '172.19.112.1';
 
 const db = Knex({
   client: 'pg',

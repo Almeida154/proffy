@@ -1,6 +1,6 @@
 import path from 'path';
 
-const ip = '192.168.0.10';
+const ip = '172.19.112.1';
 
 module.exports = {
   client: 'pg',
