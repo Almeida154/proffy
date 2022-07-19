@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
@@ -12,9 +12,20 @@ import blackStudyIC from '../../assets/images/icons/study.black.svg';
 import giveClassesIC from '../../assets/images/icons/give-classes.svg';
 import blackGiveClassesIC from '../../assets/images/icons/give-classes.black.svg';
 import purpleHeartIC from '../../assets/images/icons/purple-heart.svg';
+
 import { useTheme } from '../../contexts/ThemeContext';
 
+import api from '../../services/api';
+
 const Landing = () => {
+  const [totalConnections, setTotalConnections] = useState(0);
+
+  useEffect(() => {
+    api
+      .get('connections')
+      .then((res) => setTotalConnections(res.data.total));
+  }, []);
+
   const { theme } = useTheme();
 
   return (
@@ -55,7 +66,7 @@ const Landing = () => {
         </div>
 
         <span className="total-connections">
-          Total de 200 conexões já realizadas{' '}
+          Total de {totalConnections} conexões já realizadas{' '}
           <img src={purpleHeartIC} alt="Coração roxo" />
         </span>
       </div>

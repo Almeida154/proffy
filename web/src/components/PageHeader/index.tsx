@@ -13,10 +13,15 @@ import './styles.css';
 
 interface IPageHeader {
   title: string;
+  description?: string;
   children?: React.ReactNode;
 }
 
-const PageHeader: React.FC<IPageHeader> = ({ title, children }) => {
+const PageHeader: React.FC<IPageHeader> = ({
+  title,
+  description,
+  children,
+}) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -44,6 +49,7 @@ const PageHeader: React.FC<IPageHeader> = ({ title, children }) => {
 
       <div className="header-content">
         <strong>{title}</strong>
+        {description && <p>{description}</p>}
         {children ?? children}
       </div>
     </header>
