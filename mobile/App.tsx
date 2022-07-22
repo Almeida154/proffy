@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 
 import {
   Archivo_400Regular,
@@ -22,7 +22,7 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return null;
   } else {
     return (
       <>

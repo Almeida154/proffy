@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
+
+import api from '../../services/api';
 
 import styles from './styles';
 
@@ -11,6 +14,16 @@ import heartIC from '../../assets/images/icons/heart.png';
 
 const Landing: React.FC = () => {
   const { navigate } = useNavigation();
+
+  const [totalConnections, setTotalConnections] = useState(0);
+
+  useEffect(() => {
+    api.get('connections').then((res) => {
+      console.log(res);
+      setTotalConnections(res.data.total);
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image source={landingIMG} style={styles.banner} />
@@ -51,7 +64,8 @@ const Landing: React.FC = () => {
       </View>
 
       <Text style={styles.totalConnections}>
-        Total de 285 conexões já realizadas <Image source={heartIC} />
+        Total de {totalConnections} conexões já realizadas{' '}
+        <Image source={heartIC} />
       </Text>
     </View>
   );
