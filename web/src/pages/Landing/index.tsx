@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import './styles.css';
+import './styles.scss';
 
 import logoIMG from '../../assets/images/logo.svg';
 import blackLogoIMG from '../../assets/images/logo.black.svg';

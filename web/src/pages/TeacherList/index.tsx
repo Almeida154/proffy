@@ -7,7 +7,7 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem';
 
 import api from '../../services/api';
 
-import './styles.css';
+import './styles.scss';
 
 const TeacherList = () => {
   const [subject, setSubject] = useState('Artes');

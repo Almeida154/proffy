@@ -7,7 +7,7 @@
 <br>
 
 <p align="center">
-  <a href="#-Project">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-About">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-Technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-Features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-How-to-use">How to use</a>
@@ -57,6 +57,7 @@ Click [here](<https://www.figma.com/file/RnzorJJQt88HRZbCuCNo49/Proffy-Web-2.0-(
 
 ###### Mobile
 
+- [React Native](https://github.com/facebook/react-native#readme)
 - [Expo](https://expo.dev/)
 - [React Navigation](https://reactnavigation.org)
 - [Axios](https://expo.dev/)
