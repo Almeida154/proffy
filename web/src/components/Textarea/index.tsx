@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles.scss';
 
 interface TextareaI
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

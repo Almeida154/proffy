@@ -1,7 +1,7 @@
 import whatsappIC from '../../assets/images/icons/whatsapp.svg';
 import api from '../../services/api';
 
-import './styles.css';
+import './styles.scss';
 
 export type Teacher = {
   id: number;

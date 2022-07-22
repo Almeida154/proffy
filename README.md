@@ -49,7 +49,7 @@ Click [here](<https://www.figma.com/file/RnzorJJQt88HRZbCuCNo49/Proffy-Web-2.0-(
 ###### Web
 
 - [React.js](https://reactjs.org)
-- [Styled Components](https://styled-components.com/)
+- [SCSS](https://sass-lang.com/)
 - [React Input Mask](https://github.com/sanniassin/react-input-mask)
 - [React Icons](https://github.com/react-icons/react-icons)
 - [Axios](https://axios-http.com)

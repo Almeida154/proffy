@@ -9,7 +9,7 @@ import blackBackIC from '../../assets/images/icons/back.black.svg';
 import sunIC from '../../assets/images/icons/sun.svg';
 import moonIC from '../../assets/images/icons/moon.svg';
 
-import './styles.css';
+import './styles.scss';
 
 interface IPageHeader {
   title: string;
