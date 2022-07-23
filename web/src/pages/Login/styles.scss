@@ -1,0 +1,21 @@
+#login-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    fieldset {
+      border: 0;
+
+      legend {
+        font-weight: 600;
+        font-size: 3.2rem;
+        font-family: Poppins;
+        color: var(--color-text-title);
+        margin-bottom: 4rem;
+      }
+    }
+  }
+}

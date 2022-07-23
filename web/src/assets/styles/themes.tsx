@@ -61,7 +61,7 @@ export const themes = {
     'color-text-title': '#ffffff',
     'color-text-complement': '#9c98a6',
     'color-text-base': '#E2E2E2',
-    'color-line-in-white': '#0F0F1A',
+    'color-line-in-white': '#000000',
     'color-input-background': '#141414',
     'color-button-text': '#000000',
     'color-box-base': '#141414',
