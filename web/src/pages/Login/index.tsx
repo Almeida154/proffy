@@ -4,6 +4,8 @@ import { Checkbox } from '@mui/material';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
+import logo from '../../assets/images/logo.svg';
+
 import './styles.scss';
 
 const Login: React.FC = () => {
@@ -12,7 +14,16 @@ const Login: React.FC = () => {
 
   return (
     <div id="login-page">
-      <div className="container">
+      <div className="brand-container">
+        <div>
+          <img src={logo} alt="Logo" />
+          <p>
+            Sua plataforma de <br /> estudos online
+          </p>
+        </div>
+      </div>
+
+      <div className="form-container">
         <form>
           <fieldset>
             <legend>Fazer login</legend>

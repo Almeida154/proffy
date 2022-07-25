@@ -5,7 +5,23 @@
   justify-content: center;
   align-items: center;
 
+  .brand-container {
+    display: none;
+  }
+
+  .form-container {
+    background: var(--color-background);
+    max-width: 589px;
+    height: 100vh;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   form {
+    max-width: 560px;
+
     fieldset {
       border: 0;
 
@@ -22,6 +38,8 @@
       margin: 2.4rem 0 4rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
 
       .remember-password {
         display: flex;
@@ -36,6 +54,44 @@
       & > p {
         text-align: end;
       }
+    }
+  }
+}
+
+@media (min-width: 789px) {
+  #root {
+    background-color: var(--color-primary);
+  }
+
+  #login-page {
+    .brand-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 70%;
+      flex: 1;
+
+      & > div {
+        padding: 0 2rem;
+      }
+
+      img {
+        width: 100%;
+        max-width: 370px;
+      }
+
+      p {
+        color: var(--color-title-in-primary);
+        opacity: 0.5;
+        font-size: 2.4rem;
+        font-weight: 400;
+      }
+    }
+
+    .form-container {
+      flex: 1;
+      padding: 0 8rem;
     }
   }
 }
