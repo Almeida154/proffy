@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Checkbox } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -11,6 +12,20 @@ import './styles.scss';
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberPassword, setRememberPassword] = useState(false);
+
+  function handleRememberPasswordToggle() {
+    setRememberPassword(!rememberPassword);
+  }
+
+  function handleUserLogin(e: FormEvent) {
+    e.preventDefault();
+    console.debug('login data', {
+      email,
+      password,
+      rememberPassword,
+    });
+  }
 
   return (
     <div id="login-page">
@@ -24,7 +39,7 @@ const Login: React.FC = () => {
       </div>
 
       <div className="form-container">
-        <form>
+        <form onSubmit={handleUserLogin}>
           <fieldset>
             <legend>Fazer login</legend>
             <Input
@@ -58,11 +73,13 @@ const Login: React.FC = () => {
                     color: '#04d361',
                   },
                 }}
+                checked={rememberPassword}
+                onClick={handleRememberPasswordToggle}
               />
               <p>Lembrar minha senha</p>
             </div>
 
-            <p>Esqueci minha senha</p>
+            <Link to="password-recovery">Esqueci minha senha</Link>
           </div>
 
           <Button

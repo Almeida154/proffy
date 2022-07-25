@@ -47,8 +47,10 @@
         gap: 1rem;
       }
 
+      a,
       p {
         color: var(--color-text-complement);
+        text-decoration: none;
       }
 
       & > p {
