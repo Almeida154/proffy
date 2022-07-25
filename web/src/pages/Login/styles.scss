@@ -17,5 +17,25 @@
         margin-bottom: 4rem;
       }
     }
+
+    .options {
+      margin: 2.4rem 0 4rem;
+      display: flex;
+      justify-content: space-between;
+
+      .remember-password {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      p {
+        color: var(--color-text-complement);
+      }
+
+      & > p {
+        text-align: end;
+      }
+    }
   }
 }

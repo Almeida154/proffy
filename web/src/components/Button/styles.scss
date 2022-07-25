@@ -11,11 +11,18 @@ button {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: background-color 0.2s;
+  transition: background-color opacity 0.2s;
   margin-top: 3.2rem;
 
   &.disabled {
     background-color: var(--color-disabled);
+    color: var(--color-text-complement);
+    opacity: 0.7;
+  }
+
+  &.disabled:hover {
+    background-color: var(--color-disabled);
+    opacity: 1;
   }
 
   &:hover {
