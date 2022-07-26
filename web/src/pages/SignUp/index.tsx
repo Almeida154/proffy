@@ -1,5 +1,9 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { AxiosError } from 'axios';
+
+import api from '../../services/api';
 
 import BrandSection from '../../components/BrandSection';
 import Button from '../../components/Button';
@@ -15,26 +19,38 @@ import './styles.scss';
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState('');
-  const [middleName, setMiddleName] = useState('');
+  const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState<string | null>(null);
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
-  function handleUserSignUp(e: FormEvent) {
+  const emailInputRef = useRef<HTMLInputElement>(null);
+
+  async function handleUserSignUp(e: FormEvent) {
     e.preventDefault();
 
-    console.debug('signin data', {
-      name,
-      middleName,
-      email,
-      password,
-    });
-
-    if (!checkEmptyFields([name, middleName, email, password]))
+    if (!checkEmptyFields([name, lastname, email, password]))
       return alert('Preencha todos os campos');
 
-    navigate('/successfully-sign-up');
+    try {
+      await api.post('sign-in', {
+        name,
+        lastname,
+        email,
+        password,
+      });
+      navigate('/successfully-sign-up');
+    } catch (error) {
+      const err = error as AxiosError;
+      const { message, field } = err.response?.data as ErrorResponse;
+
+      if (field == 'email') {
+        setEmailError(message);
+        emailInputRef.current?.focus();
+      }
+    }
   }
 
   return (
@@ -63,16 +79,21 @@ const SignUp: React.FC = () => {
             label="Sobrenome"
             name="middleName"
             type="middleName"
-            value={middleName}
-            onChange={(e) => setMiddleName(e.target.value)}
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
           />
 
           <Input
+            inputRef={emailInputRef}
             label="E-mail"
             name="email"
             type="email"
+            error={emailError != null}
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmailError(null);
+              setEmail(e.target.value);
+            }}
           />
 
           <Input
@@ -89,7 +110,7 @@ const SignUp: React.FC = () => {
           text="Concluir cadastro"
           disabled={
             name === '' ||
-            middleName === '' ||
+            lastname === '' ||
             email === '' ||
             password === ''
           }

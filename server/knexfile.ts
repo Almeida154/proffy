@@ -1,11 +1,9 @@
 import path from 'path';
 
-const ip = '172.19.112.1';
-
 module.exports = {
   client: 'pg',
   connection: {
-    host: ip,
+    host: process.env.HOST,
     port: 5432,
     user: 'proffy',
     password: 'proffy',

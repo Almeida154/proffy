@@ -10,12 +10,14 @@ interface InputI {
   isTheFirstOne?: boolean;
   isTheLastOne?: boolean;
   isPassword?: boolean;
+  error?: boolean;
 }
 
 const Input: React.FC<InputI & TextFieldProps> = ({
   isTheFirstOne,
   isTheLastOne,
   isPassword,
+  error,
   type,
   ...rest
 }) => {
@@ -42,7 +44,7 @@ const Input: React.FC<InputI & TextFieldProps> = ({
     paddingBlock: 8,
     fontSize: 16,
     fontFamily: 'Poppins',
-    color: '#C1BCCC',
+    color: error ? '#D32F2F' : '#C1BCCC',
   };
 
   const [isPasswordVisible, setPasswordVisible] = useState(
@@ -88,7 +90,7 @@ const Input: React.FC<InputI & TextFieldProps> = ({
   return (
     <TextField
       {...rest}
-      className="field"
+      className={`field ${error && 'error'}`}
       style={isTheFirstOne ? { marginTop: '4rem' } : {}}
       InputLabelProps={{ style: inputLabelStyle }}
       InputProps={{

@@ -18,6 +18,7 @@ export type ThemeType = {
   'color-box-base': string;
   'color-box-footer': string;
   'color-disabled': string;
+  'color-error': string;
 };
 
 export type ThemesType = {
@@ -48,6 +49,7 @@ export const themes = {
     'color-box-base': '#ffffff',
     'color-box-footer': '#fafafc',
     'color-disabled': '#DCDCE5',
+    'color-error': '#D32F2F',
   },
   dark: {
     'color-background': '#181818',
@@ -69,5 +71,6 @@ export const themes = {
     'color-box-base': '#141414',
     'color-box-footer': '#111111',
     'color-disabled': '#DCDCE5',
+    'color-error': '#D32F2F',
   },
 };

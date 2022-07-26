@@ -12,6 +12,10 @@
 form {
   max-width: 560px;
 
+  a + fieldset {
+    margin-top: 2rem;
+  }
+
   fieldset {
     border: 0;
 
@@ -64,6 +68,6 @@ form {
 
   .form-container {
     flex: 1;
-    padding: 8rem;
+    padding: 8rem 10rem;
   }
 }

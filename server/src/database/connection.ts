@@ -1,11 +1,9 @@
 import Knex from 'knex';
 
-const ip = '172.19.112.1';
-
 const db = Knex({
   client: 'pg',
   connection: {
-    host: ip,
+    host: process.env.HOST,
     port: 5432,
     user: 'proffy',
     password: 'proffy',
