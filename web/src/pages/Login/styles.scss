@@ -1,99 +1,23 @@
 #login-page {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .brand-container {
-    display: none;
-  }
-
-  .form-container {
-    background: var(--color-background);
-    max-width: 589px;
-    height: 100vh;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  form {
-    max-width: 560px;
-
-    fieldset {
-      border: 0;
-
-      legend {
-        font-weight: 600;
-        font-size: 3.2rem;
-        font-family: Poppins;
-        color: var(--color-text-title);
-        margin-bottom: 4rem;
-      }
-    }
+  footer {
+    width: 100%;
+    margin-top: 6rem;
 
     .options {
-      margin: 2.4rem 0 4rem;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-
-      .remember-password {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      a,
-      p {
-        color: var(--color-text-complement);
-        text-decoration: none;
-      }
-
-      & > p {
-        text-align: end;
-      }
-    }
-  }
-}
-
-@media (min-width: 789px) {
-  #root {
-    background-color: var(--color-primary);
-  }
-
-  #login-page {
-    .brand-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 70%;
-      flex: 1;
-
-      & > div {
-        padding: 0 2rem;
-      }
-
-      img {
-        width: 100%;
-        max-width: 370px;
-      }
-
-      p {
-        color: var(--color-title-in-primary);
-        opacity: 0.5;
-        font-size: 2.4rem;
-        font-weight: 400;
-      }
     }
 
-    .form-container {
-      flex: 1;
-      padding: 0 8rem;
+    a {
+      text-decoration: underline;
+      color: var(--color-primary);
+      font-weight: 600;
     }
   }
 }

@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import BrandSection from '../../components/BrandSection';
+import Form from '../../components/Form';
 
-import logo from '../../assets/images/logo.svg';
+import heartIC from '../../assets/images/icons/purple-heart.svg';
+
+import checkEmptyFields from '../../utils/checkEmptyFields';
 
 import './styles.scss';
 
@@ -25,69 +29,76 @@ const Login: React.FC = () => {
       password,
       rememberPassword,
     });
+
+    if (!checkEmptyFields([email, password]))
+      return alert('Preencha todos os campos');
   }
 
   return (
     <div id="login-page">
-      <div className="brand-container">
-        <div>
-          <img src={logo} alt="Logo" />
-          <p>
-            Sua plataforma de <br /> estudos online
-          </p>
-        </div>
-      </div>
+      <BrandSection />
 
-      <div className="form-container">
-        <form onSubmit={handleUserLogin}>
-          <fieldset>
-            <legend>Fazer login</legend>
-            <Input
-              label="E-mail"
-              name="email"
-              type="email"
-              isTheFirstOne
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              label="Password"
-              name="password"
-              isPassword
-              isTheLastOne
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </fieldset>
+      <Form formSubmit={handleUserLogin}>
+        <fieldset>
+          <legend>Fazer login</legend>
+          <Input
+            label="E-mail"
+            name="email"
+            type="email"
+            isTheFirstOne
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            label="Password"
+            name="password"
+            isPassword
+            isTheLastOne
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </fieldset>
 
-          <div className="options">
-            <div className="remember-password">
-              <Checkbox
-                sx={{
-                  '& .MuiSvgIcon-root': {
-                    fontSize: 28,
-                  },
-                  padding: 0,
+        <div className="options">
+          <div className="remember-password">
+            <Checkbox
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 28,
+                },
+                padding: 0,
+                color: '#04d361',
+                '&.Mui-checked': {
                   color: '#04d361',
-                  '&.Mui-checked': {
-                    color: '#04d361',
-                  },
-                }}
-                checked={rememberPassword}
-                onClick={handleRememberPasswordToggle}
-              />
-              <p>Lembrar minha senha</p>
-            </div>
-
-            <Link to="password-recovery">Esqueci minha senha</Link>
+                },
+              }}
+              checked={rememberPassword}
+              onClick={handleRememberPasswordToggle}
+            />
+            <p>Lembrar-me</p>
           </div>
 
-          <Button
-            text="Entrar"
-            disabled={email === '' || password === ''}
-          />
-        </form>
-      </div>
+          <Link to="password-recovery">Esqueci minha senha</Link>
+        </div>
+
+        <Button
+          text="Entrar"
+          disabled={email === '' || password === ''}
+        />
+
+        <footer>
+          <div className="options">
+            <div>
+              <p>Não tem conta?</p>
+              <Link to="sign-up">Cadastre-se</Link>
+            </div>
+
+            <span>
+              É de graça <img src={heartIC} alt="Coração roxo" />
+            </span>
+          </div>
+        </footer>
+      </Form>
     </div>
   );
 };

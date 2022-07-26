@@ -1,0 +1,31 @@
+.brand-container {
+  display: none;
+  height: 100%;
+}
+
+@media (min-width: 789px) {
+  .brand-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    flex: 1;
+
+    & > div {
+      padding: 0 8rem;
+    }
+
+    img {
+      width: 100%;
+      max-width: 370px;
+    }
+
+    p {
+      color: var(--color-title-in-primary);
+      opacity: 0.5;
+      font-size: 2rem;
+      font-weight: 400;
+    }
+  }
+}

@@ -52,20 +52,19 @@ const Input: React.FC<InputI & TextFieldProps> = ({
   function PasswordIcon() {
     if (isPassword) {
       const size = 24;
-      const color = '#9c98a6';
 
       return isPasswordVisible ? (
         <FiEyeOff
           style={{ cursor: 'pointer' }}
           size={size}
-          color={color}
+          color="#8257E5"
           onClick={handlePasswordVisibilityToggle}
         />
       ) : (
         <FiEye
           style={{ cursor: 'pointer' }}
           size={size}
-          color={color}
+          color="#9c98a6"
           onClick={handlePasswordVisibilityToggle}
         />
       );
@@ -90,6 +89,7 @@ const Input: React.FC<InputI & TextFieldProps> = ({
     <TextField
       {...rest}
       className="field"
+      style={isTheFirstOne ? { marginTop: '4rem' } : {}}
       InputLabelProps={{ style: inputLabelStyle }}
       InputProps={{
         style: inputStyle,
