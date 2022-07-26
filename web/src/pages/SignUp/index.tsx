@@ -1,10 +1,11 @@
 import React, { FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import BrandSection from '../../components/BrandSection';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
+import Success from '../../components/Success/styles';
 
 import backIC from '../../assets/images/icons/back.svg';
 
@@ -18,6 +19,8 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   function handleUserSignUp(e: FormEvent) {
     e.preventDefault();
 
@@ -30,6 +33,8 @@ const SignUp: React.FC = () => {
 
     if (!checkEmptyFields([name, middleName, email, password]))
       return alert('Preencha todos os campos');
+
+    navigate('/successfully-sign-up');
   }
 
   return (
@@ -42,7 +47,7 @@ const SignUp: React.FC = () => {
         <fieldset>
           <legend>Cadastro</legend>
           <span className="subtitle">
-            Preencha os dados abaixo <br /> para começar
+            Preencha os dados abaixo <br /> para começar.
           </span>
 
           <Input
@@ -93,6 +98,21 @@ const SignUp: React.FC = () => {
 
       <BrandSection />
     </div>
+  );
+};
+
+export const Successfully: React.FC = () => {
+  const navigate = useNavigate();
+
+  return (
+    <Success
+      title="Cadastro concluído!"
+      subtitle="Agora você faz parte da plataforma da Proffy. Tenha uma ótima experiência."
+      buttonProps={{
+        text: 'Fazer login',
+        onClick: () => navigate('/'),
+      }}
+    />
   );
 };
 

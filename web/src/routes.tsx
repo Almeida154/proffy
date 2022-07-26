@@ -1,8 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Login from './pages/Login';
-import PasswordRecovery from './pages/PasswordRecovery';
-import SignUp from './pages/SignUp';
+
+import PasswordRecovery, {
+  Successfully as SuccessfullyPasswordRecovery,
+} from './pages/PasswordRecovery';
+
+import SignUp, {
+  Successfully as SuccessfullyUserSignUp,
+} from './pages/SignUp';
 
 import Landing from './pages/Landing';
 import TeacherForm from './pages/TeacherForm';
@@ -17,7 +23,15 @@ const AppRoutes = () => {
           path="/password-recovery"
           element={<PasswordRecovery />}
         />
+        <Route
+          path="/successfully-password-recovery"
+          element={<SuccessfullyPasswordRecovery />}
+        />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route
+          path="/successfully-sign-up"
+          element={<SuccessfullyUserSignUp />}
+        />
         <Route path="/landing" element={<Landing />} />
         <Route path="/study" element={<TeacherList />} />
         <Route path="/give-classes" element={<TeacherForm />} />
