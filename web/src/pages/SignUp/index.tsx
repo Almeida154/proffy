@@ -1,5 +1,6 @@
 import React, { FormEvent, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 import { AxiosError } from 'axios';
 
@@ -32,7 +33,11 @@ const SignUp: React.FC = () => {
     e.preventDefault();
 
     if (!checkEmptyFields([name, lastname, email, password]))
-      return alert('Preencha todos os campos');
+      return toast.error('Preencha todos os campos', {
+        duration: 4000,
+        position: 'top-center',
+        className: 'proffy-toast',
+      });
 
     try {
       await api.post('sign-in', {
@@ -49,6 +54,11 @@ const SignUp: React.FC = () => {
       if (field == 'email') {
         setEmailError(message);
         emailInputRef.current?.focus();
+        toast.error('Este email já existe', {
+          duration: 4000,
+          position: 'top-center',
+          className: 'proffy-toast',
+        });
       }
     }
   }
