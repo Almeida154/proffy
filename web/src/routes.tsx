@@ -1,15 +1,15 @@
 import { ReactNode } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  Outlet,
+} from 'react-router-dom';
 
-import Login from './pages/Login';
-
-import PasswordRecovery, {
-  Successfully as SuccessfullyPasswordRecovery,
-} from './pages/PasswordRecovery';
-
-import SignUp, {
-  Successfully as SuccessfullyUserSignUp,
-} from './pages/SignUp';
+import SignIn from './pages/SignIn';
+import Recovery, { SuccessfullyRecovery } from './pages/PasswordRecovery';
+import SignUp, { SuccessfullySignUp } from './pages/SignUp';
 
 import Landing from './pages/Landing';
 import TeacherForm from './pages/TeacherForm';
@@ -17,58 +17,41 @@ import TeacherList from './pages/TeacherList';
 
 import { useAuth } from './contexts/AuthContext';
 
-interface ProtectedRouteI {
-  children?: ReactNode;
-}
+const AppRoutes = () => {
+  const { signed, isLoading } = useAuth();
 
-function ProtectedRoute({ children }: ProtectedRouteI) {
-  const { signed } = useAuth();
+  function RequireAuth() {
+    const location = useLocation();
 
-  console.log(signed);
+    if (!signed) {
+      return <Navigate to="/" state={{ from: location }} replace />;
+    }
 
-  if (!signed) {
-    return <Navigate to="/" />;
+    return <Outlet />;
   }
 
-  return <>{children}</>;
-}
-
-const AppRoutes = () => {
-  const { signed } = useAuth();
+  if (isLoading) {
+    return <h1>CARREGANDO!!!!!!!!!</h1>;
+  }
 
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route
-        path="/password-recovery"
-        element={<PasswordRecovery />}
-      />
-      <Route
-        path="/successfully-password-recovery"
-        element={<SuccessfullyPasswordRecovery />}
-      />
+      {/* Public routes */}
+      <Route path="/" element={<SignIn />} />
+      <Route path="/recovery" element={<Recovery />} />
+      <Route path="/success-recovery" element={<SuccessfullyRecovery />} />
       <Route path="/sign-up" element={<SignUp />} />
-      <Route
-        path="/successfully-sign-up"
-        element={<SuccessfullyUserSignUp />}
-      />
+      <Route path="/success-sign-up" element={<SuccessfullySignUp />} />
 
-      <Route
-        path="/landing"
-        element={signed ? <Landing /> : <Navigate to="/" replace />}
-      />
-      <Route
-        path="/study"
-        element={
-          signed ? <TeacherList /> : <Navigate to="/" replace />
-        }
-      />
-      <Route
-        path="/give-classes"
-        element={
-          signed ? <TeacherForm /> : <Navigate to="/" replace />
-        }
-      />
+      {/* Protected routes */}
+      <Route element={<RequireAuth />}>
+        <Route path="/landing" element={<Landing />} />
+        <Route path="/give-classes" element={<TeacherForm />} />
+        <Route path="/study" element={<TeacherList />} />
+      </Route>
+
+      {/* Missing routes */}
+      <Route path="*" element={<h1>Not found paizao</h1>} />
     </Routes>
   );
 };

@@ -22,7 +22,8 @@ const Landing = () => {
   useEffect(() => {
     api
       .get('connections')
-      .then((res) => setTotalConnections(res.data.total));
+      .then((res) => setTotalConnections(res.data.total))
+      .catch((err) => console.log(err, '| DEU RUI AQUI MEMO'));
   }, []);
 
   const { theme } = useTheme();
@@ -55,9 +56,7 @@ const Landing = () => {
           </Link>
           <Link to="/give-classes" className="give-classes">
             <img
-              src={
-                theme === 'dark' ? blackGiveClassesIC : giveClassesIC
-              }
+              src={theme === 'dark' ? blackGiveClassesIC : giveClassesIC}
               alt="Dar aulas"
             />
             Dar aulas

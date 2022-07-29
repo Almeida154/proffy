@@ -65,7 +65,7 @@ const PasswordRecovery: React.FC = () => {
   );
 };
 
-export const Successfully: React.FC = () => {
+export const SuccessfullyRecovery: React.FC = () => {
   const navigate = useNavigate();
 
   return (

@@ -125,7 +125,7 @@ const SignUp: React.FC = () => {
   );
 };
 
-export const Successfully: React.FC = () => {
+export const SuccessfullySignUp: React.FC = () => {
   const navigate = useNavigate();
 
   return (

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { UserType } from '../@types/userType';
 import { useToast } from './ToastContext';
+
 import api from '../services/api';
 
 interface AuthContextI {
@@ -15,30 +16,35 @@ interface AuthContextI {
     keepLogged: boolean
   ) => Promise<void>;
   signOut: () => void;
+  isLoading: boolean;
 }
 
-const AuthContext = React.createContext<AuthContextI>(
-  {} as AuthContextI
-);
+const AuthContext = React.createContext<AuthContextI>({} as AuthContextI);
 
 export const useAuth = () => useContext(AuthContext);
 
-export const AuthProvider: React.FC<ContextProvider> = ({
-  children,
-}) => {
+export const AuthProvider: React.FC<ContextProvider> = ({ children }) => {
   const [user, setUser] = useState<UserType | null>(null);
+  const [isLoading, setLoading] = useState(true);
 
   const { show } = useToast();
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const user = localStorage.getItem('@proffy:user');
-    const token = localStorage.getItem('@proffy:token');
+  function setAxiosTokenAuthorization(token: string) {
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
 
-    if (user && token) {
-      setUser(JSON.parse(user));
+  useEffect(() => {
+    const storagedUser = localStorage.getItem('@proffy:user');
+    const storagedToken = localStorage.getItem('@proffy:token');
+
+    if (storagedUser && storagedToken) {
+      const newUser = JSON.parse(storagedUser);
+      setUser(newUser);
+      setAxiosTokenAuthorization(storagedToken);
     }
+
+    setLoading(false);
   }, []);
 
   async function signIn(
@@ -53,15 +59,12 @@ export const AuthProvider: React.FC<ContextProvider> = ({
         keepLogged,
       });
 
-      console.log(data.user);
-
       setUser(data.user);
       localStorage.setItem('@proffy:user', JSON.stringify(data.user));
       localStorage.setItem('@proffy:token', data.token);
 
-      const token = `Bearer ${data.token}`;
-      api.defaults.headers.common['Authorization'] = token;
-      navigate('landing');
+      setAxiosTokenAuthorization(data.token);
+      navigate('/landing', { replace: true });
     } catch (error) {
       const err = error as AxiosError;
       const { message } = err.response?.data as ErrorResponse;
@@ -79,7 +82,7 @@ export const AuthProvider: React.FC<ContextProvider> = ({
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signIn, signOut }}
+      value={{ user, signed: !!user, signIn, signOut, isLoading }}
     >
       {children}
     </AuthContext.Provider>

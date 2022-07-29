@@ -16,7 +16,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 import './styles.scss';
 
-const Login: React.FC = () => {
+const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [keepLogged, setKeepLogged] = useState(false);
@@ -34,7 +34,7 @@ const Login: React.FC = () => {
     if (!checkEmptyFields([email, password]))
       return show.error('Preencha todos os campos');
 
-    signIn(email, password, keepLogged);
+    await signIn(email, password, keepLogged);
   }
 
   return (
@@ -84,10 +84,7 @@ const Login: React.FC = () => {
           <Link to="password-recovery">Esqueci minha senha</Link>
         </div>
 
-        <Button
-          text="Entrar"
-          disabled={email === '' || password === ''}
-        />
+        <Button text="Entrar" disabled={email === '' || password === ''} />
 
         <footer>
           <div className="options">
@@ -106,4 +103,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default SignIn;

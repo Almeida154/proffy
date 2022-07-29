@@ -17,7 +17,7 @@ export default function authMiddleware(
   if (!authorization) {
     return res
       .status(401)
-      .json({ message: 'Not authorized by the middleware' });
+      .json({ message: 'Not authorized by the middleware (CATCH)' });
   }
 
   const token = authorization.replace('Bearer', '').trim();
@@ -34,6 +34,6 @@ export default function authMiddleware(
   } catch {
     return res
       .status(401)
-      .json({ message: 'Not authorized by the middleware' });
+      .json({ message: 'Not authorized by the middleware CATCHZADA' });
   }
 }
