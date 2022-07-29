@@ -14,7 +14,6 @@ import blackGiveClassesIC from '../../assets/images/icons/give-classes.black.svg
 import purpleHeartIC from '../../assets/images/icons/purple-heart.svg';
 
 import { useTheme } from '../../contexts/ThemeContext';
-
 import api from '../../services/api';
 
 const Landing = () => {

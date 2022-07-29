@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -23,16 +23,17 @@ const PageHeader: React.FC<IPageHeader> = ({
   children,
 }) => {
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
   return (
     <header className="page-header">
       <div className="top-bar-container">
-        <Link to="/">
+        <a onClick={() => navigate(-1)}>
           <img
             src={theme === 'dark' ? blackBackIC : backIC}
             alt="Voltar"
           />
-        </Link>
+        </a>
         <div>
           <div onClick={() => toggleTheme()}>
             <img

@@ -1,10 +1,11 @@
 import React, { FormEvent, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
 
 import { AxiosError } from 'axios';
 
 import api from '../../services/api';
+import checkEmptyFields from '../../utils/checkEmptyFields';
+import { useToast } from '../../contexts/ToastContext';
 
 import BrandSection from '../../components/BrandSection';
 import Button from '../../components/Button';
@@ -13,8 +14,6 @@ import Input from '../../components/Input';
 import Success from '../../components/Success/styles';
 
 import backIC from '../../assets/images/icons/back.svg';
-
-import checkEmptyFields from '../../utils/checkEmptyFields';
 
 import './styles.scss';
 
@@ -27,17 +26,15 @@ const SignUp: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const { show } = useToast();
+
   const emailInputRef = useRef<HTMLInputElement>(null);
 
   async function handleUserSignUp(e: FormEvent) {
     e.preventDefault();
 
     if (!checkEmptyFields([name, lastname, email, password]))
-      return toast.error('Preencha todos os campos', {
-        duration: 4000,
-        position: 'top-center',
-        className: 'proffy-toast',
-      });
+      return show.error('Preencha todos os campos');
 
     try {
       await api.post('sign-in', {
@@ -54,11 +51,7 @@ const SignUp: React.FC = () => {
       if (field == 'email') {
         setEmailError(message);
         emailInputRef.current?.focus();
-        toast.error('Este email já existe', {
-          duration: 4000,
-          position: 'top-center',
-          className: 'proffy-toast',
-        });
+        show.error('Este email já existe');
       }
     }
   }

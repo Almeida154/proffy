@@ -1,6 +1,7 @@
-import { useState } from 'react';
-
 import { ThemeProvider } from './contexts/ThemeContext';
+import { ToastProvider } from './contexts/ToastContext';
+import { AuthProvider } from './contexts/AuthContext';
+
 import AppRoutes from './routes';
 
 import './assets/styles/global.css';
@@ -8,7 +9,11 @@ import './assets/styles/global.css';
 function App() {
   return (
     <ThemeProvider>
-      <AppRoutes />
+      <ToastProvider>
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      </ToastProvider>
     </ThemeProvider>
   );
 }

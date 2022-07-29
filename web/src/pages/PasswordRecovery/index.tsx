@@ -11,6 +11,8 @@ import backIC from '../../assets/images/icons/back.svg';
 
 import checkEmptyFields from '../../utils/checkEmptyFields';
 
+import { useToast } from '../../contexts/ToastContext';
+
 import './styles.scss';
 
 const PasswordRecovery: React.FC = () => {
@@ -18,15 +20,13 @@ const PasswordRecovery: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const { show } = useToast();
+
   function handlePasswordRecovery(e: FormEvent) {
     e.preventDefault();
 
-    console.debug('password recovery data', {
-      email,
-    });
-
     if (!checkEmptyFields([email]))
-      return alert('Preencha todos os campos');
+      return show.error('Preencha todos os campos');
 
     navigate('/successfully-password-recovery');
   }

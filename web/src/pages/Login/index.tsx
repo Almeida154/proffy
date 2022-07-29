@@ -11,27 +11,30 @@ import heartIC from '../../assets/images/icons/purple-heart.svg';
 
 import checkEmptyFields from '../../utils/checkEmptyFields';
 
+import { useToast } from '../../contexts/ToastContext';
+import { useAuth } from '../../contexts/AuthContext';
+
 import './styles.scss';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberPassword, setRememberPassword] = useState(false);
+  const [keepLogged, setKeepLogged] = useState(false);
 
-  function handleRememberPasswordToggle() {
-    setRememberPassword(!rememberPassword);
+  const { show } = useToast();
+  const { signIn } = useAuth();
+
+  function handleKeepLoggedToggle() {
+    setKeepLogged(!keepLogged);
   }
 
-  function handleUserLogin(e: FormEvent) {
+  async function handleUserLogin(e: FormEvent) {
     e.preventDefault();
-    console.debug('login data', {
-      email,
-      password,
-      rememberPassword,
-    });
 
     if (!checkEmptyFields([email, password]))
-      return alert('Preencha todos os campos');
+      return show.error('Preencha todos os campos');
+
+    signIn(email, password, keepLogged);
   }
 
   return (
@@ -72,8 +75,8 @@ const Login: React.FC = () => {
                   color: '#04d361',
                 },
               }}
-              checked={rememberPassword}
-              onClick={handleRememberPasswordToggle}
+              checked={keepLogged}
+              onClick={handleKeepLoggedToggle}
             />
             <p>Lembrar-me</p>
           </div>

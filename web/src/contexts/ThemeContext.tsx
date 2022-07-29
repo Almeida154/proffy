@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Toaster } from 'react-hot-toast';
 
 import {
   themes as variables,
@@ -18,11 +17,11 @@ const ThemeContext = React.createContext<ThemeContextType>(
 
 export const useTheme = () => React.useContext(ThemeContext);
 
-interface IThemeProvider {
+interface ThemeProviderI {
   children: React.ReactNode;
 }
 
-export const ThemeProvider: React.FC<IThemeProvider> = ({
+export const ThemeProvider: React.FC<ThemeProviderI> = ({
   children,
 }) => {
   const [theme, setTheme] = useState(
@@ -55,7 +54,6 @@ export const ThemeProvider: React.FC<IThemeProvider> = ({
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <Toaster />
       {children}
     </ThemeContext.Provider>
   );
